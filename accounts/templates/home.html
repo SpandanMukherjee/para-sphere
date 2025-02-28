@@ -8,33 +8,33 @@
   <h1 class="mb-4">Welcome to ParaSphere</h1>
 
   {% if user.is_authenticated %}
-
     <p class="lead">
       Good
-
       {% if now.hour < 12 %}
           Morning
-      {% elif 12 <= now.hour < 18 %}
+      {% elif now.hour < 18 %}
           Afternoon
       {% else %}
           Evening
       {% endif %},
-
-      {{ user.username }}
+      <strong>{{ user.username }}</strong>
     </p>
 
     <div class="d-grid gap-2 col-6 mx-auto">
       <a href="{% url 'profile' username=user.username %}" class="btn btn-primary">View Profile</a>
       <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
     </div>
-
   {% else %}
-
     <div class="d-grid gap-2 col-6 mx-auto">
       <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
     </div>
-
   {% endif %}
-  
 </div>
+
+<!-- Adding text shadow for better contrast over variable backgrounds -->
+<style>
+  h1, p, a {
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+  }
+</style>
 {% endblock %}

@@ -79,10 +79,9 @@ def edit_profile(request):
         profile.bio = new_bio
 
         if(new_profile_picture):
-            print("New uploaded", new_profile_picture.name)
             profile.profile_picture = new_profile_picture
-        else:
-            print("nothing uploaded")
+
+        profile.background_color = request.POST.get("background_color", profile.background_color)
 
         user.save()
         profile.save()

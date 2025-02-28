@@ -5,9 +5,7 @@
 
 {% block content %}
 <div class="container">
-
-  <div class="card mb-3">
-
+  <div class="card bg-dark text-white mb-3">
     <div class="card-body">
       <h2 class="card-title">Profile of {{ user_profile.username }}</h2>
       <p class="card-text"><strong>Email:</strong> {{ user_profile.email }}</p>
@@ -18,26 +16,19 @@
       {% endif %}
 
       {% if profile.profile_picture %}
-
-          <div class="mb-3">
-            <img src="{{ profile.profile_picture.url }}" alt="{{ user_profile.username }}'s Profile Picture" class="img-fluid rounded" style="max-width: 200px;">
-          </div>
-
+        <div class="mb-3">
+          <img src="{{ profile.profile_picture.url }}" alt="{{ user_profile.username }}'s Profile Picture" class="img-fluid rounded" style="max-width: 200px;">
+        </div>
       {% endif %}
 
       <div class="mt-3">
-
         {% if user.is_authenticated and user == user_profile %}
           <a href="{% url 'edit_profile' %}" class="btn btn-secondary">Edit Profile</a>
           <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
         {% endif %}
-
         <a href="/" class="btn btn-primary">Go to Home</a>
       </div>
-
     </div>
-    
   </div>
-
 </div>
 {% endblock %}
