@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ParaSphere{% endblock %}
+
+{% block content %}
+<div class="container text-center my-5">
+  <h1 class="mb-4">Welcome to ParaSphere</h1>
+
+  {% if user.is_authenticated %}
+
+    <p class="lead">
+      Good
+
+      {% if now.hour < 12 %}
+          Morning
+      {% elif 12 <= now.hour < 18 %}
+          Afternoon
+      {% else %}
+          Evening
+      {% endif %},
+
+      {{ user.username }}
+    </p>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <a href="{% url 'profile' username=user.username %}" class="btn btn-primary">View Profile</a>
+      <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+    </div>
+
+  {% else %}
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    </div>
+
+  {% endif %}
+  
+</div>
+{% endblock %}
