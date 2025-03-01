@@ -9,7 +9,8 @@ from .models import Profile
 
 def home(request):
     now = timezone.localtime(timezone.now())
-    return render(request, 'home.html', {'now': now})
+    members = User.objects.all()
+    return render(request, 'home.html', {'now': now, 'members': members})
 
 def login_view(request):
 
@@ -32,6 +33,7 @@ def login_view(request):
     return render(request, 'accounts/login.html')
 
 def logout_view(request):
+    messages.get_messages(request)
     logout(request)
     return redirect('/accounts/login')
 
